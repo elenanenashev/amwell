@@ -29,7 +29,7 @@ $ npm -v
 6.14.4
 ```  
 
-Install nodejs from
+### Install nodejs from
 
 ```
 https://nodejs.org/en/download/
@@ -41,16 +41,6 @@ $ node -v
 v12.16.3
 ```
 
-#Install chromediver  
-#You may get it from  https://chromedriver.chromium.org and get the latest stable release.
-
-#```
-#cp ~/Downloads/chromedriver_mac64.zip .
-#
-#npm install chromedriver@78.0.1 --chromedriver_filepath=/full/path/to/chromedriver_mac64.zip
-#
-#```
-
 
 ### Install packages
 (from package.json) by running following command
@@ -59,10 +49,19 @@ cd ~/WORKING.DIR/amwell
 npm install
 ```
 
+### Verify chromedriver is installed 
+
+```
+$ npm list chromedriver
+am@0.0.0 /Users/elenanenashev/GitHUB/amwell
+└── chromedriver@81.0.0
+```
+
+
 ### Running Instructions
 To run test(s)
 
-./Run.me.sh tests/PROJECT_NAME/SpecsXXX/Test_name
+./Run.me.sh tests/PROJECT_NAME/Specs/Test_name
 
 for example to run one test only
 ```
@@ -94,5 +93,5 @@ or
 ### Note for IntelliJ setup
 
 Make sure to select ECMA6 in 
-IntelliJ IDEA->Preferences->JavaScript: Javasript language version
+IntelliJ IDEA->Preferences->Languages & Frameworks->JavaScript: Javasript language version
 
