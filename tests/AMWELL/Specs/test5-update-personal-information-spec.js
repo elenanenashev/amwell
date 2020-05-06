@@ -16,7 +16,7 @@ const month = '11'; // option value[0]=1 month January; option value[1]=2 month 
 const year = '22'; // option value[0]=2020; option value[1]=2019, etc...value[22] is 2020 year
 
 // this case is for already registered user; updating personal information: adding Social title and Date of Birth
-test.describe('test-5: user can update personal information ', function() {
+test.describe('test-5: verify user can update personal information ', function() {
     this.timeout(timeOut);
 
     test.it(" get on automation practice main page ", async function(){
@@ -29,16 +29,15 @@ test.describe('test-5: user can update personal information ', function() {
         await page.mainPage();
     });
 
-    test.it(' click on "Sign In" button => "Already Registered" form: enter email and password, click "Sign In" button ', async function() {
+    test.it(' main page => click on "Sign In" link => "Already Registered" form: enter email and password, click "Sign In" button ', async function() {
 
-        await page.signInButton().click(); // click on Sign In button
+        await page.signInLink().click(); // header bar click on Sign In
         await cf.sleep(1000);
 
         await page.authenticationPage.registeredEmailInputBox().sendKeys(emailAddress);
         await page.authenticationPage.registeredPasswordInputBox().sendKeys(password);
         await page.authenticationPage.registeredSignInButton().click();
         await cf.sleep(1000);
-
    });
 
    test.it(' "My Account" page => click on "My Personal Information" option => select "Mr." radio-box for Social Title => enter Date of Birth', async function() {
@@ -87,6 +86,29 @@ test.describe('test-5: user can update personal information ', function() {
                 assert.strictEqual(message, "Your personal information has been successfully updated.", "Error: alert success message is not correct " );
                 //console.log('Alert Success message: ' + message);
             });
+    });
+
+    // this block is to change the information again so on the next run test case works properly
+
+    test.it(' click on "Back to Your Account" button ', async function() {
+
+        await page.userAccountPage.backToAccountButton().click();
+        await page.userAccountPage.selectUserAccountLink(4).click();
+        await page.personalInformationForm.socialTitleCheckboxMrs().click();
+        await driver.executeScript("window.scrollBy(0,500)");
+
+        await page.personalInformationForm.dayBirthSelect(2).click();
+        await page.personalInformationForm.dayBirthDropdown().click();
+
+        await page.personalInformationForm.monthBirthSelect(3).click();
+        await page.personalInformationForm.monthBirthDropdown().click();
+
+        await page.personalInformationForm.yearBirthSelect(15).click();
+        await page.personalInformationForm.yearBirthDropdown().click();
+
+        await page.personalInformationForm.currentPasswordInputBox().sendKeys(password);
+
+        await page.personalInformationForm.saveButton().click();
     });
 
     after(function(){

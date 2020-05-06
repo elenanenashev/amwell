@@ -43,8 +43,6 @@ class authenticationPage {
 
     // ======= ALREADY REGISTERED? FORM ======= //
 
-
-
     registeredEmailInputBox() {
         let elementXpath = '//*[@id="email"]';
         return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
@@ -60,9 +58,33 @@ class authenticationPage {
         return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
     };
 
+    registeredForgotPasswordLink() {
+        let elementXpath = '//a[text() = "Forgot your password?"]';
+        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
+    };
 
 
+// ======= FORGOT YOUR PASSWORD? FORM ======= //
 
+    forgotPasswordHeader() {
+        let elementXpath = '//h1[text() = "Forgot your password?"]';
+        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
+    };
+
+    forgotPasswordText() {
+        let elementXpath = '//*[@id="center_column"]/div/p';
+        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
+    };
+
+    retrievePasswordButton() {
+        let elementXpath = '//*[@id="form_forgotpassword"]/fieldset/p/button';
+        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
+    };
+
+    retrievePasswordAlertSuccess() {
+        let elementXpath = '//p[@class="alert alert-success"]';
+        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
+    };
 }
 
 module.exports = authenticationPage;

@@ -9,12 +9,10 @@ const timeOut = config.get("timeOut");
 let driver;
 let page;
 
-const emailAddress = "05051405@test.com";
-const password = "qatest";
+const emailAddress = "05061123@test.com";
 
-
-// this case is for already registered user; updating personal information: adding Social title and Date of Birth
-test.describe('test-5: user can update personal information ', function() {
+// this case is for already registered user; user forgot the password
+test.describe('test-6: verify forgot your password form ', function() {
     this.timeout(timeOut);
 
     test.it(" get on automation practice main page ", async function(){
@@ -27,65 +25,57 @@ test.describe('test-5: user can update personal information ', function() {
         await page.mainPage();
     });
 
-    test.it(' click on "Sign In" button => "Already Registered" form: enter email and password, click "Sign In" button ', async function() {
+    test.it(' main page => click on "Sign In" link => "Already Registered" form: enter email => click "Forgot your password?" link ', async function() {
 
-        await page.signInButton().click(); // click on Sign In button
+        await page.signInLink().click(); // header bar click on Sign In
         await cf.sleep(1000);
 
         await page.authenticationPage.registeredEmailInputBox().sendKeys(emailAddress);
-        await page.authenticationPage.registeredPasswordInputBox().sendKeys(password);
-        await page.authenticationPage.registeredSignInButton().click();
-        await cf.sleep(1000);
+        await page.authenticationPage.registeredForgotPasswordLink().click();
+     });
 
-   });
+   test.it(' "Forgot Password" page => verify page title, page header, text and "Retrieve Password" button ', async function() {
 
-   test.it(' "My Account" page => click on "My Personal Information" option => select "Mr." radio-box for Social Title => enter Date of Birth', async function() {
+       await driver.getTitle().then(async function(currentTitle) {
+           assert.strictEqual(currentTitle, "Forgot your password - My Store", "Error: Not correct page title for forgot password page ");
+           //console.log('Current Page Title: ' + currentTitle);
+       });
 
-       await page.userAccountPage.selectUserAccountLink(4).click();
-       await page.personalInformationForm.socialTitleCheckboxMr().click();
-       await driver.executeScript("window.scrollBy(0,500)");
-
-       await page.personalInformationForm.dayBirthSelect(day).click();
-       await page.personalInformationForm.dayBirthDropdown().click();
-
-       await page.personalInformationForm.monthBirthSelect(month).click();
-       await page.personalInformationForm.monthBirthDropdown().click();
-
-       await page.personalInformationForm.yearBirthSelect(year).click();
-       await page.personalInformationForm.yearBirthDropdown().click();
-   });
-
-   test.it(' verify if current password is not entered user information can not be saved and error message displayed', async function() {
-
-       await page.personalInformationForm.saveButton().click();
-
-       await page.personalInformationForm.alertErrorMessage1()
+       await page.authenticationPage.forgotPasswordHeader()
            .getText()
-           .then(function(message1) {
-               assert.strictEqual(message1, "There is 1 error", "Error: alert error message is not correct " );
-               //console.log('Alert Error message1: ' + message1);
+           .then(function(header) {
+               assert.strictEqual(header, "FORGOT YOUR PASSWORD?", "Error: not correct header for 'Forgot your password' page " );
+               //console.log('Forgot your password page header: ' + header);
            });
 
-       await page.personalInformationForm.alertErrorMessage2()
+       await page.authenticationPage.forgotPasswordText()
            .getText()
-           .then(function(message2) {
-               assert.strictEqual(message2, "The password you entered is incorrect.", "Error: alert error message is not correct " );
-               //console.log('Alert Error message2: ' + message2);
+           .then(function(passwordText) {
+               assert.strictEqual(passwordText, "Please enter the email address you used to register. We will then send you a new password.", "Error: not correct password text for 'Forgot your password' page" );
+               //console.log('Forgot your password page text: ' + passwordText);
+           });
+
+       await page.authenticationPage.retrievePasswordButton()
+           .getText()
+           .then(function(button) {
+               assert.strictEqual(button, "Retrieve Password", "Error: 'Forgot your password' page 'Retrieve password' button is not correct " );
+               //console.log('Forgot your password button: ' + button);
            });
    });
 
-    test.it(' enter current password => click "Save" => verify success message is displayed ', async function() {
+   test.it(' "Forgot Password" page => enter valid email and click on "Retrieve Password" => verify success message is displayed', async function() {
 
-        await page.personalInformationForm.currentPasswordInputBox().sendKeys(password);
-        await page.personalInformationForm.saveButton().click();
+       await page.authenticationPage.registeredEmailInputBox().sendKeys(emailAddress);
+       await page.authenticationPage.retrievePasswordButton().click();
 
-        await page.personalInformationForm.alertSuccessMessage()
-            .getText()
-            .then(function(message) {
-                assert.strictEqual(message, "Your personal information has been successfully updated.", "Error: alert success message is not correct " );
-                //console.log('Alert Success message: ' + message);
-            });
-    });
+
+       await page.authenticationPage.retrievePasswordAlertSuccess()
+           .getText()
+           .then(function(message) {
+               assert.strictEqual(message, "A confirmation email has been sent to your address: 05061123@test.com", "Error: alert success message is not correct " );
+               //console.log('Alert Success message: ' + message);
+           });
+   });
 
     after(function(){
         driver.quit();

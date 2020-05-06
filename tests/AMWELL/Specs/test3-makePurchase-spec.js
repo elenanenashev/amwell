@@ -12,7 +12,7 @@ let page;
 const emailAddress = "05051405@test.com";
 const password = "qatest";
 
-test.describe('test-3: user should be able to make a purchase ', function() {
+test.describe('test-3: verify that user is able to make a purchase ', function() {
     this.timeout(timeOut);
 
     test.it(" get on automation practice main page ", async function(){
@@ -25,7 +25,7 @@ test.describe('test-3: user should be able to make a purchase ', function() {
         await page.mainPage();
     });
 
-    test.it(' user is on Main Page => click on tab "T-Shirts" => hover over and click on the image => click "Add to cart" ', async function() {
+    test.it(' main Page => click on tab "T-Shirts" => hover over and click on the image => click "Add to cart" ', async function() {
 
         await page.tshirtsTab().click(); // click on T-Shirts tab
         await cf.sleep(1000);
@@ -64,7 +64,7 @@ test.describe('test-3: user should be able to make a purchase ', function() {
         await cf.sleep(1000);
 
         await driver.executeScript("window.scrollBy(0,700)");
-        await page.cartCheckoutPage.proceedCheckoutButton().click();
+        await page.shoppingCartPage.proceedCheckoutButton().click();
     });
 
 
@@ -77,29 +77,28 @@ test.describe('test-3: user should be able to make a purchase ', function() {
         await cf.sleep(1000);
 
         await driver.executeScript("window.scrollBy(0,700)");
-        await page.cartCheckoutPage.proceedCheckoutButton().click();
+        await page.shoppingCartPage.proceedCheckoutButton().click();
     });
 
     test.it(' "Shipping" page => click on checkbox for "Terms of services" => click on "Proceed to checkout" button', async function() {
 
-        await page.cartCheckoutPage.termsOfServiceLabel()
+        await page.shoppingCartPage.termsOfServiceLabel()
             .getText()
             .then(function(termsLabel) {
                 assert.strictEqual(termsLabel, "Terms of service", "Error: 'Shipping' page no label 'Terms of service' " );
                 //console.log('Shipping Page label: ' + termsLabel);
             });
 
-        await page.cartCheckoutPage.termsCheckbox().click();
-        await page.cartCheckoutPage.shippingProceedCheckoutButton().click();
+        await page.shoppingCartPage.termsCheckbox().click();
+        await page.shoppingCartPage.shippingProceedCheckoutButton().click();
     });
 
     test.it(' "Payment" page => click on "Pay by check" option => click on "I Confirm my order" button => verify successful message ', async function() {
 
-        await page.cartCheckoutPage.payByCheckOption().click();
-        await page.cartCheckoutPage.confirmOrderButton().click();
+        await page.shoppingCartPage.payByCheckOption().click();
+        await page.shoppingCartPage.confirmOrderButton().click();
 
-
-        await page.cartCheckoutPage.successfulMessage()
+        await page.shoppingCartPage.successfulMessage()
             .getText()
             .then(function(message) {
                 assert.strictEqual(message, "Your order on My Store is complete.", "Error: successful message is not displayed " );

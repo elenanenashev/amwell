@@ -10,7 +10,7 @@ let driver;
 let page;
 
 
-test.describe('test-4: user is on main page => verify categories tabs "Women", "Dresses", "T-Shirts"; verify each tab can be clicked and correct pages displayed ', function() {
+test.describe('test-4: verify main page categories tabs "Women", "Dresses", "T-Shirts"; verify each tab can be clicked and correct pages displayed ', function() {
     this.timeout(timeOut);
 
     test.it(" get on automation practice main page ", async function(){
@@ -23,7 +23,7 @@ test.describe('test-4: user is on main page => verify categories tabs "Women", "
         await page.mainPage();
     });
 
-    test.it(' user is on Main Page => verify 3 tabs are displayed ', async function() {
+    test.it(' main Page => verify 3 categories tabs are displayed ', async function() {
 
         await page.womenTab()
             .getText()

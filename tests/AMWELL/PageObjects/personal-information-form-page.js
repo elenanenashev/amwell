@@ -85,6 +85,11 @@ class personalInformationForm {
         return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
     };
 
+    socialTitleCheckboxMrs() {
+        let elementXpath = '//label[text() = "Social title"]//following::div[@id="uniform-id_gender2"]';
+        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
+    };
+
     dayBirthDropdown() {
         let elementXpath = '//*[@id="uniform-days"]';
         return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);

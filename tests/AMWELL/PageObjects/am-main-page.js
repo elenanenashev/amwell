@@ -10,7 +10,7 @@ const womenPage = require('./women-page.js');
 const dressesPage = require('./dresses-page.js');
 const tshirtsPage = require('./tshirts-page.js');
 const cartProductLayerForm = require ('./products-added-page.js');
-const cartCheckoutPage = require ('./cart-checkout-page.js');
+const shoppingCartPage = require ('./shopping-cart-page.js');
 const until = webdriver.until;
 
 require('log-timestamp');
@@ -27,7 +27,7 @@ class amMainPage {
         this.dressesPage = new dressesPage(this.driver, this.url);
         this.tshirtsPage = new tshirtsPage(this.driver, this.url);
         this.cartProductLayerForm = new cartProductLayerForm(this.driver, this.url);
-        this.cartCheckoutPage = new cartCheckoutPage(this.driver, this.url);
+        this.shoppingCartPage = new shoppingCartPage(this.driver, this.url);
 
     };
 
@@ -54,7 +54,7 @@ class amMainPage {
 
     // ======= AUTOMATION PRACTICE MAIN PAGE ======= //
 
-    signInButton() {
+    signInLink() {
         let elementXpath = '//a[@class="login"]';
         return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
     }
@@ -79,7 +79,30 @@ class amMainPage {
         return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
     }
 
+    callUsNow() {
+        let elementXpath = '//span[@class="shop-phone"]';
+        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
+    }
 
+    contactUs() {
+        let elementXpath = '//div[@id="contact-link"]';
+        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
+    }
+
+    headerLogo() {
+        let elementXpath = '//div[@id="header_logo"]';
+        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
+    }
+
+    searchInputBox() {
+        let elementXpath = '//input[@id="search_query_top"]';
+        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
+    }
+
+    shoppingCart() {
+        let elementXpath = '//div[@class="shopping_cart"]/a';
+        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
+    }
 }
 
 module.exports = amMainPage;

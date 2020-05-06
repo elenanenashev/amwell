@@ -30,11 +30,6 @@ class userAccountPage {
         return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
     };
 
-    headerSignOut() {
-        let elementXpath = '//div[@class="header_user_info"][2]'; // Sign Out Button
-        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
-    };
-
     userAccountLinks() {
         let elementXpath = '//ul[@class="myaccount-link-list"]//span';
         this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 5 * 1000);
@@ -51,8 +46,11 @@ class userAccountPage {
         return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
     };
 
+    backToAccountButton() {
+        let elementXpath = '//*[@id="center_column"]/ul/li[1]/a';
+        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
+    };
 
-    
 }
 
 module.exports = userAccountPage;

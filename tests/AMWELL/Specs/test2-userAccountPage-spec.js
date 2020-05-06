@@ -15,7 +15,7 @@ const firstName = "John";
 const lastName = "Smith";
 
 
-test.describe('test-2: User is on "My Account" Page => verify page forms ', function() {
+test.describe('test-2: verify forms on "My Account" Page ', function() {
     this.timeout(timeOut);
 
     test.it(" get on automation practice main page ", async function(){
@@ -28,9 +28,9 @@ test.describe('test-2: User is on "My Account" Page => verify page forms ', func
         await page.mainPage();
     });
 
-    test.it(' click on "Sign In" button => "Already Registered" form: enter email and password, click "Sign In" button ', async function() {
+    test.it(' main page => click on "Sign In" link => "Already Registered" form: enter email and password, click "Sign In" button ', async function() {
 
-        await page.signInButton().click(); // click on Sign In button
+        await page.signInLink().click(); // click on Sign In button
         await cf.sleep(1000);
 
         await page.authenticationPage.registeredEmailInputBox().sendKeys(emailAddress);
@@ -39,7 +39,7 @@ test.describe('test-2: User is on "My Account" Page => verify page forms ', func
         await cf.sleep(1000);
    });
 
-   test.it(' user is on "My Account" page => verify page title, page header and welcome message ', async function() {
+   test.it(' "My Account" page => verify page title, page header and welcome message ', async function() {
 
        await driver.getTitle().then(async function(currentTitle) {
            assert.strictEqual(currentTitle, "My account - My Store", "Error: Not correct page title for 'My Account' page ");
@@ -68,7 +68,7 @@ test.describe('test-2: User is on "My Account" Page => verify page forms ', func
            });
    });
 
-    test.it(' user is on "My Account" page => verify user links', async function() {
+    test.it(' "My Account" page => verify user forms: ORDER HISTORY AND DETAILS, MY CREDIT SLIPS, MY ADDRESSES, MY PERSONAL INFORMATION, MY WISHLISTS ', async function() {
 
         let expectedUserLinks = ["ORDER HISTORY AND DETAILS", "MY CREDIT SLIPS", "MY ADDRESSES", "MY PERSONAL INFORMATION" , "MY WISHLISTS"]; //
 
@@ -83,7 +83,7 @@ test.describe('test-2: User is on "My Account" Page => verify page forms ', func
             });
     });
 
-    test.it(' user is on "My Account" page => verify that upon click on "home icon" user is taken back to the main page' , async function() {
+    test.it(' "My Account" page => verify that upon click on "home icon" user is taken back to the main page' , async function() {
 
         await page.userAccountPage.iconHome().click();
         await cf.sleep(1000);
@@ -106,7 +106,6 @@ test.describe('test-2: User is on "My Account" Page => verify page forms ', func
                 assert.strictEqual(tab, "BEST SELLERS", "Error: Main page, 'Best Sellers' tab is not correct " );
                 //console.log('Main Page, tab: ' + tab);
             });
-
     });
 
     after(function(){

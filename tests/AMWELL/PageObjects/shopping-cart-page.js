@@ -5,7 +5,7 @@ const config = require('config');
 
 require('log-timestamp');
 
-class cartCheckoutPage {
+class shoppingCartPage {
 
     constructor(driver, url) {
         this.driver = driver;
@@ -13,7 +13,7 @@ class cartCheckoutPage {
         this.explicitWaitMS = config.get("explicitWaitMS");
     };
 
-    // ======= CART CHECKOUT PAGES ======= //
+    // ======= SHOPPING CART PAGES ======= //
 
 
     proceedCheckoutButton() {
@@ -51,10 +51,17 @@ class cartCheckoutPage {
         return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
     };
 
+    shoppingCartHeader() {
+        let elementXpath = '//h1[@id="cart_title"]';
+        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
+    };
 
-
+    shoppingCartAlertWarning() {
+        let elementXpath = '//p[@class="alert alert-warning"]';
+        return this.driver.wait(until.elementLocated(By.xpath(elementXpath)), 10 * 1000);
+    };
 
 
 }
 
-module.exports = cartCheckoutPage;
+module.exports = shoppingCartPage;

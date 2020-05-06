@@ -27,7 +27,7 @@ const mobile = "784-100-4723";
 const alias = "to be entered";
 
 
-test.describe('test-1: Create an account ', function() {
+test.describe('test-1: verify user can create new account ', function() {
     this.timeout(timeOut);
 
     test.it(" get on automation practice main page ", async function(){
@@ -40,9 +40,9 @@ test.describe('test-1: Create an account ', function() {
         await page.mainPage();
     });
 
-    test.it(' click on "Sign In" button => "Create an account" form is displayed => verify Header, Email Text, Email Address Label, Input Box and Button ', async function() {
+    test.it(' main page => click on "Sign In" link => "Create an account" form is displayed => verify Header, Email Text, Email Address Label, Input Box and Button ', async function() {
 
-        await page.signInButton().click(); // click on Sign In button
+        await page.signInLink().click(); // header bar click on Sign In
         await cf.sleep(2000);
 
         await page.authenticationPage.createAccountHeader()
