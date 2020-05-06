@@ -1,0 +1,94 @@
+{
+  "am-ui-url": "http://automationpractice.com/"
+  ,"timeOut":15000
+  ,"explicitWaitMS":1000
+  ,"retries":5
+
+/*
+  "fmsUsername": "enenashev",
+  "fmsPassword": "tysonOne$tysonOne",
+  "fmsOperatorRole": 5, // OPERATOR
+  "fmsMissionDirectorRole": 4, // MISSION DIRECTOR
+  "fmsGuestRole": 1, // GUEST,
+  "fmsPlannerRole": 8, // PLANNER
+
+  "mib-ui-url": "http://mib-ui.apps.dev1.owfms.net/",
+
+
+  // ======= API Utils ======= //
+  "baseUrl":"apps.dev1.owfms.net",
+  "envName":"dev1",
+
+  // ======= ANOMALY REPORT API ======= //
+  "anomalyReportApiVersion":"v4",
+
+  // ======= CIF API ======= //
+  "cifApiVersion":"v1",
+
+  // ======= MOTION PLAN API ======= //
+  "motionApiVersion":"v6",
+
+  // ======= PASSPLAN API ======= //
+  "passplanApiVersion":"v7",
+
+  // ======= PHASES API ======= //
+  "phasesApiVersion":"v4",
+
+  // ======= RAMSES API ======= //
+  "ramsesApiVersion":"v2",
+
+  // ======= SCSTATE API ======= //
+  "scstateApiVersion":"v1",
+
+  // ======= SCSF STATUS API ======= //
+  "scsfstatusApiVersion":"v2",
+
+  // ======= SOC STATUS API ======= //
+  "socStatusApiVersion":"v1",
+
+  // ======= TICKETER API ======= //
+  "ticketerApiVersion":"v5",
+  "ticketerApiReporter":"enenashev",
+  "ticketerApiAssignee":"enenashev",
+
+  // ======= TIMER API ======= //
+  "timerApiVersion":"v3",
+
+
+  // ======= MONGO DB ======= //
+
+  "mongoDbUrl":"mongodb://10.162.160.131:27017",
+  //"mongoDbUrl":"mongodb://10.162.160.128:27017",
+  //"mongoDbUrl":"mongodb://10.162.160.138:27017",
+  //"mongoDbUrl":"mongodb://10.162.160.131:27017,10.162.160.128:27017,10.162.160.138:27017/?replicaSet=rs0",
+
+
+  "mongoAnomalyReportsDB":"OneWeb", // ANOMALY REPORTS
+  "mongoCifDB": "cif", // CIF
+  "mongoEventsDB": "events_api", // EVENTS
+  "mongoMotionsDB": "OneWeb", // MOTIONS
+  "mongoPassplanDB":"passplan", // TEMPLATES
+  "mongoRamsesDB":"Ramses", // RAMSES
+  "mongoScsfDB": "OneWeb", //ScsfStatuses
+  "mongoTicketerDB":"ticketer", // TICKETS
+  "mongoTimersDB": "timers", // TIMERS
+
+
+  // ======= MySQL DB ======= //
+  "mysqlHost":"10.162.160.78",
+  "mysqlUser":"mme",
+  "mysqlPass":"F0lD18!PaRk",
+  "mysqlDatabase":"",
+  "schemaName":"Fleet",
+
+
+  // ======= VARIABLES ======= //
+  "current_month":"March",
+  "one_month_from_current": "Apr",
+  "one_month_from_current_full": "April",
+  "two_months_from_current": "2020-05",
+  "four_months_back_from_current": "2019-11",
+  "current_month_year": "MARCH 2020"
+*/
+}
+

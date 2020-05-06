@@ -1,0 +1,10 @@
+.idea/
+node-scripts.iml
+node_modules/
+AM.iml
+app.js
+bin/
+package-lock.json
+public/
+routes/
+views/
