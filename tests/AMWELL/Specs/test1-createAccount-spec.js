@@ -9,7 +9,11 @@ const timeOut = config.get("timeOut");
 let driver;
 let page;
 
-const emailAddress = "05052240@test.com";
+function getEmail(){
+    return Date.now() + "@test.com"
+}
+
+const emailAddress = getEmail(); //using timestamp to generate random email "1524379940@test.com"
 
 const firstName = "Angie";
 const lastName = "White";
